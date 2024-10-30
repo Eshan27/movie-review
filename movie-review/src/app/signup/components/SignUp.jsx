@@ -15,22 +15,31 @@ export default function Signup() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('Form data submitted:', formData);
-    toast.success('Signed up successfully!');
-
-    setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
+  
+    try {
+      const res = await fetch('/api/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
-
-    router.push('/login');
+  
+      const data = await res.json();
+  
+      if (res.ok) {
+        toast.success(data.message);
+        setFormData({ firstName: '', lastName: '', email: '', password: '' });
+        router.push('/login');
+      } else {
+        toast.error(data.error || 'Failed to register');
+      }
+    } catch (error) {
+      toast.error('An error occurred');
+      console.error(error);
+    }
   };
-
+  
   return (
     <div className='w-1/2 mx-auto p-6 bg-white rounded-lg shadow-md text-black'>
     <form onSubmit={handleSubmit}>
