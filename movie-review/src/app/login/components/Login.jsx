@@ -4,8 +4,8 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
-export default function Signup() {
-  const [formData, setFormData] = useState({ firstName: "", lastName: "", email: "", password: "" });
+export default function Login() {
+  const [formData, setFormData] = useState({ email: "", password: "" });
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -19,20 +19,18 @@ export default function Signup() {
     e.preventDefault();
 
     try {
-      const res = await fetch("/api/signup", {
+      const response = await fetch("/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
-      const data = await res.json();
-
-      if (res.ok) {
-        toast.success(data.message);
-        setFormData({ firstName: "", lastName: "", email: "", password: "" });
-        router.push("/login");
+      const data = await response.json();
+      if (response.ok) {
+        toast.success("Logged in successfully!");
+        router.push("/"); // Redirect to homepage or dashboard
       } else {
-        toast.error(data.error || "Failed to register");
+        toast.error(data.error);
       }
     } catch (error) {
       toast.error("An error occurred");
@@ -43,37 +41,7 @@ export default function Signup() {
   return (
     <div className="w-1/2 mx-auto p-6 bg-white rounded-lg shadow-md text-black">
       <form onSubmit={handleSubmit}>
-        <h2 className="text-2xl font-bold mb-6 text-center text-black">Sign Up</h2>
-
-        <div className="mb-4">
-          <label htmlFor="firstName" className="block text-sm text-black font-bold">
-            First Name
-          </label>
-          <input
-            type="text"
-            name="firstName"
-            id="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-black"
-            required
-          />
-        </div>
-
-        <div className="mb-4">
-          <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
-            Last Name
-          </label>
-          <input
-            type="text"
-            name="lastName"
-            id="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-            required
-          />
-        </div>
+        <h2 className="text-2xl font-bold mb-6 text-center text-black">Log In</h2>
 
         <div className="mb-4">
           <label htmlFor="email" className="block text-sm font-medium text-gray-700">
@@ -109,15 +77,15 @@ export default function Signup() {
           type="submit"
           className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-200"
         >
-          Sign Up
+          Login
         </button>
       </form>
 
       <hr className="my-6 border-gray-300" />
 
-      <div className="text-center">If you have an account</div>
-      <div className="text-center cursor-pointer" onClick={() => router.push("/login")}>
-        Login
+      <div className="text-center">If you don&apos;t have an account</div>
+      <div className="text-center cursor-pointer" onClick={() => router.push("/signup")}>
+        Signup
       </div>
     </div>
   );
