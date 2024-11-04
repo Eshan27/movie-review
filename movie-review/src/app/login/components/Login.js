@@ -15,24 +15,28 @@ export default function Login() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('Form data submitted:', formData);
-    toast.success('Logged in successfully!');
-
-    setFormData({
-        email: '',
-        password: '',
-      });
-
-    router.push('/');
+    
+    const response = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
+    
+    const data = await response.json();
+    if (response.ok) {
+      toast.success('Logged in successfully!');
+      router.push('/');  // Redirect to homepage or dashboard
+    } else {
+      toast.error(data.error);
+    }
   };
 
   return (
     <div className='w-1/2 mx-auto p-6 bg-white rounded-lg shadow-md text-black'>
     <form onSubmit={handleSubmit}>
-      <h2 className="text-2xl font-bold mb-6 text-center text-black">Login</h2>
+      <h2 className="text-2xl font-bold mb-6 text-center text-black">Log In</h2>
 
       <div className="mb-4">
         <label htmlFor="email" className="block text-sm font-medium text-gray-700">
