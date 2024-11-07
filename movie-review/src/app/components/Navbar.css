@@ -1,6 +1,76 @@
 .navbar-parent {
     background-color: #004aad;
-    /* padding: 2.5%; */
-    position: fixed;
+    /* position: fixed; */
     width: 100%;
 }
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-container > div:first-child {
+    flex-shrink: 0;
+}
+
+.navbar-container .search-bar-container {
+    position: relative;
+    width: 100%;
+    max-width: 40%;
+    margin: 0 1rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-bar-container input {
+    width: 100%;
+    padding: 0.5rem 2.5rem 0.5rem 2.5rem;
+    color: #4a5568;
+    background-color: #ebe1db; /* Tailwind's bg-gray-200 */
+    border: 1px solid #cbd5e0; /* Tailwind's border-gray-300 */
+    border-radius: 0.5rem;
+    outline: none;
+    transition: all 0.2s;
+  }
+  
+  .search-bar-container input:focus {
+    background-color: white;
+    box-shadow: 0 0 0 2px #4299e1; /* Tailwind's ring-blue-500 */
+  }
+  
+  .search-bar-container .search-icon {
+    position: absolute;
+    left: 0.75rem; /* Matches pl-10 for input */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a0aec0; /* Tailwind's text-gray-500 */
+  }
+  
+  /* Profile and logout icons */
+  .profile-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Tailwind's space-x-4 equivalent */
+    margin-right: 1rem;
+    cursor: pointer;
+  }
+  
+  .profile-section .icon {
+    font-size: 1.5rem; /* Tailwind's text-xl */
+    /* color: #4a5568; Tailwind's text-gray-700 */
+    transition: color 0.2s;
+    justify-content: space-between;
+  }
+  
+  .profile-section .icon:hover {
+    color: #ebe1db; /* Blue for profile icon hover */
+  }
+
+  .profile-section .login:hover {
+    color: #ebe1db;
+  }
+  
+  /* .profile-section .logout-icon:hover {
+    color: #e53e3e; 
+  } */

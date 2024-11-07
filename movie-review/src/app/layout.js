@@ -25,17 +25,19 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
-        <Toaster position="bottom-center" reverseOrder={false} toastOptions={{
-          style: {
-            padding: '1em',
-            background: 'green',
-            fontWeight: 'bold',
-            fontSize: 16,
-            textAlign: 'center',
-          }
-        }} />
-        {children}
+        <div className="app-container">
+          <Navbar />
+          <Toaster position="bottom-center" reverseOrder={false} toastOptions={{
+            style: {
+              padding: '1em',
+              background: 'green',
+              fontWeight: 'bold',
+              fontSize: 16,
+              textAlign: 'center',
+            }
+          }} />
+          {children}
+        </div>
       </body>
     </html>
   );
