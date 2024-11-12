@@ -7,6 +7,9 @@
 
 .login-container {
     width: 100%;
+    color: black;
+    background-color: white;
+    align-content: center;
 }
 
 .newhere-container {
@@ -27,10 +30,24 @@
     margin-bottom: 3%;
 }
 
+.login-title {
+    font-size: xx-large;
+    justify-content: center;
+    text-align: center;
+}
+
 .nh-subtitle {
     font-weight: normal;
     font-size: larger;
     margin-bottom: 3%;
+}
+
+.login-subtitle {
+    font-weight: normal;
+    font-size: larger;
+    margin-bottom: 5%;
+    justify-content: center;
+    text-align: center;
 }
 
 .signup-button {
@@ -50,4 +67,29 @@
 .signup-button:hover {
     color: white;
     background-color: black;
+}
+
+.login-button {
+    background-color: black;
+    color: white;
+    width: 100%;
+    max-width: 30%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3em;
+    padding: 0.5em 2em 0.5em 2em;
+    cursor: pointer;
+    font-size: larger;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.login-button:hover {
+    color: black;
+    background-color: #DF5C10;
+}
+.form-container {
+   width: 100%; 
+   padding: 2.5% 15% 2.5% 15%;
 }

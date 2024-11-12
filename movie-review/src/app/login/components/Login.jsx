@@ -42,46 +42,50 @@ export default function Login() {
 
   return (
     <div className="parent-container">
-      <div className="mx-auto p-6 bg-white rounded-lg shadow-md text-black login-container">
-        <form onSubmit={handleSubmit}>
-          <h2 className="text-2xl font-bold mb-6 text-center text-black">Log In</h2>
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              value={formData.email}
-              onChange={handleChange}
-              className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-              required
-            />
-          </div>
+      <div className="login-container">
+        <div className="login-title">Login to your Account</div>
+        <div className="login-subtitle">We are glad to have you back!</div>
+        <div className="form-container">
+          <form onSubmit={handleSubmit}>
+            <div className="mb-4">
+              <label htmlFor="email" className="block text-sm font-bold text-black">
+                Email
+              </label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                required
+              />
+            </div>
 
-          <div className="mb-6">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              Password
-            </label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              value={formData.password}
-              onChange={handleChange}
-              className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-              required
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-200"
-          >
-            Login
-          </button>
-        </form>
+            <div className="mb-6">
+              <label htmlFor="password" className="block text-sm font-bold text-black">
+                Password
+              </label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                value={formData.password}
+                onChange={handleChange}
+                className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                required
+              />
+            </div>
+            <div className="flex justify-center">
+              <button
+                type="submit"
+                className="login-button"
+              >
+                Login
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
       <NewHere />
     </div>

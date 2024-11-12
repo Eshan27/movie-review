@@ -3,9 +3,11 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import SignUpCarousal from "./SignUpCarousal";
+import './SignUp.css'
 
 export default function Signup() {
-  const [formData, setFormData] = useState({ firstName: "", lastName: "", email: "", password: "" });
+  const [formData, setFormData] = useState({ firstName: "", lastName: "", email: "", password: "", confirmPassword: "" });
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -18,6 +20,11 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (formData.password !== formData.confirmPassword) {
+      toast.error("Passwords do not match");
+      return;
+    }
+
     try {
       const res = await fetch("/api/signup", {
         method: "POST",
@@ -29,7 +36,7 @@ export default function Signup() {
 
       if (res.ok) {
         toast.success(data.message);
-        setFormData({ firstName: "", lastName: "", email: "", password: "" });
+        setFormData({ firstName: "", lastName: "", email: "", password: "", confirmPassword: "" });
         router.push("/login");
       } else {
         toast.error(data.error || "Failed to register");
@@ -41,83 +48,104 @@ export default function Signup() {
   };
 
   return (
-    <div className="w-1/2 mx-auto p-6 bg-white rounded-lg shadow-md text-black">
-      <form onSubmit={handleSubmit}>
-        <h2 className="text-2xl font-bold mb-6 text-center text-black">Sign Up</h2>
+    <div className="parent-container">
+      <SignUpCarousal />
+      <div className="signup-container">
+          <div className="signup-title">Sign Up</div>
+          <div className="signup-subtitle">We are so glad to have you here!</div>
+          <div className="form-container">
+            <form onSubmit={handleSubmit}>
+              <div className="mb-4">
+                <label htmlFor="firstName" className="block text-sm text-black font-bold">
+                  First Name
+                </label>
+                <input
+                  type="text"
+                  name="firstName"
+                  id="firstName"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-black"
+                  required
+                />
+              </div>
 
-        <div className="mb-4">
-          <label htmlFor="firstName" className="block text-sm text-black font-bold">
-            First Name
-          </label>
-          <input
-            type="text"
-            name="firstName"
-            id="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-black"
-            required
-          />
-        </div>
+              <div className="mb-4">
+                <label htmlFor="lastName" className="block text-sm font-bold text-black">
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  name="lastName"
+                  id="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                  required
+                />
+              </div>
 
-        <div className="mb-4">
-          <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
-            Last Name
-          </label>
-          <input
-            type="text"
-            name="lastName"
-            id="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-            required
-          />
-        </div>
+              <div className="mb-4">
+                <label htmlFor="email" className="block text-sm font-bold text-black">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                  required
+                />
+              </div>
 
-        <div className="mb-4">
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-            Email
-          </label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-            required
-          />
-        </div>
+              <div className="mb-6">
+                <label htmlFor="password" className="block text-sm font-bold text-black">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                  required
+                />
+              </div>
 
-        <div className="mb-6">
-          <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-            Password
-          </label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            value={formData.password}
-            onChange={handleChange}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-            required
-          />
-        </div>
+              <div className="mb-6">
+                <label htmlFor="confirmPassword" className="block text-sm font-bold text-black">
+                  Retype Password
+                </label>
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  id="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                  required
+                />
+              </div>
 
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-200"
-        >
-          Sign Up
-        </button>
-      </form>
+              <div className="flex justify-center">
+                <button
+                  type="submit"
+                  className="signup-button"
+                >
+                  Sign Up
+                </button>
+            </div>
+            </form>
+          </div>
 
-      <hr className="my-6 border-gray-300" />
-
-      <div className="text-center">If you have an account</div>
-      <div className="text-center cursor-pointer" onClick={() => router.push("/login")}>
-        Login
+        {/* <hr className="my-6 border-gray-300" />
+        <div className="text-center">If you have an account</div>
+        <div className="text-center cursor-pointer" onClick={() => router.push("/login")}>
+          Login
+        </div> */}
       </div>
     </div>
   );
