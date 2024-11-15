@@ -1,7 +1,7 @@
 .parent-container {
     display: flex;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     align-items: stretch;
     text-align: center;
     justify-content: center;
@@ -13,13 +13,18 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-height: 100vh;
+    text-align: left;
+    min-height: 100vh;
+    padding-bottom: 2em;
 }
 
 .carousal-container {
     width: 60%;
     background-color: #DF5C10;
-    min-height: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .signup-title {
@@ -59,5 +64,28 @@
 
 .signup-button:hover {
     color: black;
+    background-color: #DF5C10;
+}
+
+.login-button {
+    background-color: white;
+    color: black;
+    border-color: black;
+    border-width: 0.15em;
+    width: 100%;
+    max-width: 25%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3em;
+    padding: 0.5em 1.25em 0.5em 1.25em;
+    cursor: pointer;
+    font-size: larger;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.login-button:hover {
+    color: white;
     background-color: #DF5C10;
 }

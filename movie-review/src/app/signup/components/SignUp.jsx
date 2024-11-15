@@ -141,11 +141,19 @@ export default function Signup() {
             </form>
           </div>
 
-        {/* <hr className="my-6 border-gray-300" />
-        <div className="text-center">If you have an account</div>
-        <div className="text-center cursor-pointer" onClick={() => router.push("/login")}>
-          Login
-        </div> */}
+          <div className="flex items-center my-3">
+            <hr className="flex-grow border-gray-300" />
+            <span className="mx-4 text-gray-500">Already a user?</span>
+            <hr className="flex-grow border-gray-300" />
+          </div>
+          <div className="flex justify-center text-center">
+            <button
+              onClick={() => router.push("/login")}
+              className="login-button"
+            >
+              Login
+            </button>
+        </div>
       </div>
     </div>
   );
