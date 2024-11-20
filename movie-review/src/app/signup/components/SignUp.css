@@ -22,6 +22,7 @@
     width: 60%;
     background-color: #DF5C10;
     min-height: 100vh;
+    color: white;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -88,4 +89,10 @@
 .login-button:hover {
     color: white;
     background-color: #DF5C10;
+}
+
+.subtitle {
+    color: white;
+    font-weight: normal;
+    font-size: x-large;
 }
