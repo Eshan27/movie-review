@@ -26,6 +26,44 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel {
+    width: 100%;
+    height: 40%; /* Adjust height based on poster size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 2em;
+    animation: scroll-carousel 20s linear infinite;
+    will-change: transform; /* Improves animation performance */
+}
+
+.carousel-poster {
+    width: 25%; 
+    height: 80%;
+    object-fit: fill;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Continuous scrolling animation */
+@keyframes scroll-carousel {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
 }
 
 .signup-title {
@@ -95,4 +133,5 @@
     color: white;
     font-weight: normal;
     font-size: x-large;
+    margin-top: 5%;
 }
